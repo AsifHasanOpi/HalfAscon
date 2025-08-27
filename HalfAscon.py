@@ -287,10 +287,10 @@ def ascon_permutation(S, rounds=1):
         
         # --- linear diffusion layer ---
         S[0] ^= rotr(S[0], 19) ^ rotr(S[0], 28)
-        S[1] ^= rotr(S[1], 31) ^ rotr(S[1], 26)  # DryGASCON
+        S[1] ^= rotr(S[1], 31) ^ rotr(S[1], 5)
         S[2] ^= rotr(S[2],  1) ^ rotr(S[2],  6)
         S[3] ^= rotr(S[3], 10) ^ rotr(S[3], 17)
-        S[4] ^= rotr(S[4],  3) ^ rotr(S[4], 26)  # Shamash
+        S[4] ^= rotr(S[4],  3) ^ rotr(S[4], 13)
         if debugpermutation:
             printwords(S, "linear diffusion layer:")
         
@@ -361,8 +361,8 @@ def demo_aead(variant):
 
     key = b"itisakey"  # an 8 byte key
     nonce = b"itsnonce"  # an 8 byte nonce
-    associateddata = b"data"  # an 4 byte ass.data
-    plaintext = b"text"  # an 4 byte plaintext
+    associateddata = b"datadata"  # an 4 byte ass.data
+    plaintext = b"texttext"  # an 4 byte plaintext
 
     ciphertext = ascon_encrypt(key, nonce, associateddata, plaintext,  variant)
 
